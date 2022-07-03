@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="foo_table">
+        <column>id</column>
+        <column>text</column>
+        <column>numeric</column>
+        <row>
+            <value>1</value>
+            <value>foo</value>
+            <value>99</value>
+        </row>
+    </table>
+</dataset>

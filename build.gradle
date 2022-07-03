@@ -1,0 +1,22 @@
+plugins {
+    id "java"
+}
+
+sourceCompatibility = 18
+targetCompatibility = 18
+
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.hsqldb:hsqldb:2.6.1"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
+    testImplementation "org.dbunit:dbunit:2.7.3"
+}
+
+test {
+    useJUnitPlatform()
+}

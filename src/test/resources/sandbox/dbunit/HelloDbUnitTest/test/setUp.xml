@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="test_table">
+        <column>id</column>
+        <column>value</column>
+        <row>
+            <value>1</value>
+            <value>hoge</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>fuga</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>piyo</value>
+        </row>
+    </table>
+</dataset>
