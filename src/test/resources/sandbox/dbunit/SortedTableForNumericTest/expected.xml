@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="test_table">
+        <column>id</column>
+        <column>text</column>
+        <column>numeric</column>
+        <row>
+            <value>3</value>
+            <value>aaa</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>bbb</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>1</value>
+            <value>ccc</value>
+            <value>10</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>ddd</value>
+            <value>10</value>
+        </row>
+    </table>
+</dataset>
