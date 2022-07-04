@@ -6,20 +6,25 @@ import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.dbunit.Assertion.assertEquals;
 
-public class AssertSpecifiedTableTest extends AbstractDbUnitTest {
+public class AssertSpecifiedTableTest {
+
+    @RegisterExtension
+    static MyDbUnitExtension myDbUnitExtension = new MyDbUnitExtension();
+
     @BeforeAll
-    static void beforeAll() throws Exception {
+    static void beforeAll() {
         // DB初期化(テーブル作成)
-        ddl("""
+        myDbUnitExtension.ddl("""
         create table foo_table (
             id integer primary key,
             text varchar(32),
             numeric integer
         )""");
-        ddl("""
+        myDbUnitExtension.ddl("""
         create table bar_table (
             id integer primary key,
             text varchar(32)
@@ -28,18 +33,18 @@ public class AssertSpecifiedTableTest extends AbstractDbUnitTest {
 
     @BeforeEach
     void beforeEach() throws Exception {
-        XmlDataSet setUpDataSet = readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/setUp.xml");
-        databaseTester.setDataSet(setUpDataSet);
+        XmlDataSet setUpDataSet = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/setUp.xml");
+        myDbUnitExtension.getDatabaseTester().setDataSet(setUpDataSet);
 
-        databaseTester.onSetup();
+        myDbUnitExtension.getDatabaseTester().onSetup();
     }
 
     @Test
     void testGetTable() throws Exception {
-        IDataSet actual = getConnection().createDataSet();
+        IDataSet actual = myDbUnitExtension.getConnection().createDataSet();
         ITable actualFooTable = actual.getTable("foo_table");
 
-        XmlDataSet expected = readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/expected.xml");
+        XmlDataSet expected = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/expected.xml");
         ITable expectedFooTable = expected.getTable("foo_table");
 
         assertEquals(expectedFooTable, actualFooTable);
@@ -47,9 +52,9 @@ public class AssertSpecifiedTableTest extends AbstractDbUnitTest {
 
     @Test
     void testCreateQueryTable() throws Exception {
-        ITable actualFooTable = getConnection().createQueryTable("foo_table", "select * from foo_table");
+        ITable actualFooTable = myDbUnitExtension.getConnection().createQueryTable("foo_table", "select * from foo_table");
 
-        XmlDataSet expected = readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/expected.xml");
+        XmlDataSet expected = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/expected.xml");
         ITable expectedFooTable = expected.getTable("foo_table");
 
         assertEquals(expectedFooTable, actualFooTable);

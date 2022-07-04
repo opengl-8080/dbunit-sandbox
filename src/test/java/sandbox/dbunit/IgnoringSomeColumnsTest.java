@@ -6,14 +6,18 @@ import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.dbunit.Assertion.assertEquals;
 
-public class IgnoringSomeColumnsTest extends AbstractDbUnitTest {
+public class IgnoringSomeColumnsTest {
+    @RegisterExtension
+    static MyDbUnitExtension myDbUnitExtension = new MyDbUnitExtension();
+
     @BeforeAll
-    static void beforeAll() throws Exception {
+    static void beforeAll() {
         // DB初期化(テーブル作成)
-        ddl("""
+        myDbUnitExtension.ddl("""
         create table foo_table (
             id integer primary key,
             text varchar(32),
@@ -23,17 +27,17 @@ public class IgnoringSomeColumnsTest extends AbstractDbUnitTest {
 
     @BeforeEach
     void beforeEach() throws Exception {
-        XmlDataSet setUpDataSet = readXmlDataSet("/sandbox/dbunit/IgnoringSomeColumnsTest/setUp.xml");
-        databaseTester.setDataSet(setUpDataSet);
+        XmlDataSet setUpDataSet = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/IgnoringSomeColumnsTest/setUp.xml");
+        myDbUnitExtension.getDatabaseTester().setDataSet(setUpDataSet);
 
-        databaseTester.onSetup();
+        myDbUnitExtension.getDatabaseTester().onSetup();
     }
 
     @Test
     void test() throws Exception {
-        ITable actualFooTable = getConnection().createDataSet().getTable("foo_table");
+        ITable actualFooTable = myDbUnitExtension.getConnection().createDataSet().getTable("foo_table");
 
-        XmlDataSet expected = readXmlDataSet("/sandbox/dbunit/IgnoringSomeColumnsTest/expected.xml");
+        XmlDataSet expected = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/IgnoringSomeColumnsTest/expected.xml");
         ITable expectedFooTable = expected.getTable("foo_table");
 
         ITable filteredActualFooTable = DefaultColumnFilter
