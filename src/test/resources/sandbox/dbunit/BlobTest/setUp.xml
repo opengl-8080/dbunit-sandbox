@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="test_table">
+        <column>id</column>
+        <column>text</column>
+        <column>base64</column>
+        <column>file</column>
+        <column>url</column>
+        <row>
+            <value>1</value>
+            <value>[TEXT UTF-8]あいうえお</value>
+            <value>[BASE64]44GL44GN44GP44GR44GT</value>
+            <value>[FILE]./src/test/resources/sandbox/dbunit/BlobTest/file.txt</value>
+            <value>[URL]file:./src/test/resources/sandbox/dbunit/BlobTest/url.txt</value>
+        </row>
+    </table>
+</dataset>
