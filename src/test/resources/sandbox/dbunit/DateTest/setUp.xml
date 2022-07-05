@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="test_table">
+        <column>id</column>
+        <column>date_value</column>
+        <column>time_value</column>
+        <column>timestamp_value</column>
+        <row>
+            <value>1</value>
+            <value>2022-7-12</value>
+            <value>12:13:14</value>
+            <value>2022-08-01 12:30:42.123</value>
+        </row>
+    </table>
+</dataset>
