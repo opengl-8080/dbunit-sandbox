@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+    <test_table id="1" />
+    <test_table id="2" value="fuga" />
+    <test_table id="3" value="piyo" />
+</dataset>

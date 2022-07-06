@@ -3,7 +3,10 @@ package sandbox.dbunit;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.Column;
 import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.ITableMetaData;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
@@ -13,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
     private IDatabaseTester databaseTester;
@@ -44,6 +49,25 @@ public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
         try (InputStream inputStream = getClass().getResourceAsStream(path)) {
             return new XmlDataSet(inputStream);
         } catch (DataSetException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void printTable(String tableName) {
+        try {
+            System.out.println(tableName + " {");
+            ITable table = this.getConnection().createDataSet().getTable(tableName);
+            ITableMetaData metaData = table.getTableMetaData();
+
+            for (int row=0; row<table.getRowCount(); row++) {
+                List<String> values = new ArrayList<>();
+                for (Column column : metaData.getColumns()) {
+                    values.add(column.getColumnName() + "=" + table.getValue(row, column.getColumnName()));
+                }
+                System.out.println("  " + String.join(", ", values));
+            }
+            System.out.println("}");
+        } catch (DataSetException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
