@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.net.URL;
 
-public class CsvDataSetTest {
+public class CsvURLDataSetTest {
     @RegisterExtension
     static MyDbUnitExtension myDbUnitExtension = new MyDbUnitExtension();
 
@@ -41,7 +41,7 @@ public class CsvDataSetTest {
             }
         });
 
-        URL base = this.getClass().getResource("/sandbox/dbunit/CsvDataSetTest/");
+        URL base = this.getClass().getResource("/sandbox/dbunit/CsvURLDataSetTest/");
 
         CsvURLDataSet csvURLDataSet = new CsvURLDataSet(base);
         myDbUnitExtension.getDatabaseTester().setDataSet(csvURLDataSet);
