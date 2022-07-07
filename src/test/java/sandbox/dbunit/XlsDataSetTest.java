@@ -18,10 +18,16 @@ public class XlsDataSetTest {
     @BeforeAll
     static void beforeAll() {
         myDbUnitExtension.ddl("""
-        create table test_table (
+        create table foo_table (
             id integer primary key,
             value_1 varchar(8),
             value_2 varchar(8)
+        )""");
+        myDbUnitExtension.ddl("""
+        create table bar_table (
+            id integer primary key,
+            foo_id integer,
+            foreign key (foo_id) references foo_table (id)
         )""");
     }
 
@@ -33,7 +39,8 @@ public class XlsDataSetTest {
             myDbUnitExtension.getDatabaseTester().onSetup();
         }
 
-        myDbUnitExtension.printTable("test_table");
+        myDbUnitExtension.printTable("foo_table");
+        myDbUnitExtension.printTable("bar_table");
     }
 
     @Test
@@ -55,6 +62,6 @@ public class XlsDataSetTest {
             myDbUnitExtension.getDatabaseTester().onSetup();
         }
 
-        myDbUnitExtension.printTable("test_table");
+        myDbUnitExtension.printTable("foo_table");
     }
 }

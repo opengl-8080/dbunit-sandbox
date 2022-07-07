@@ -18,9 +18,15 @@ public class FlatXmlDataSetTest {
     static void beforeAll() {
         // DB初期化(テーブル作成)
         myDbUnitExtension.ddl("""
-        create table test_table (
+        create table foo_table (
             id integer primary key,
             value varchar(32)
+        )""");
+        myDbUnitExtension.ddl("""
+        create table bar_table (
+            id integer primary key,
+            foo_id integer,
+            foreign key (foo_id) references foo_table (id)
         )""");
     }
 
@@ -28,14 +34,15 @@ public class FlatXmlDataSetTest {
     void testStandard(TestInfo testInfo) throws Exception {
         load(testInfo);
 
-        myDbUnitExtension.printTable("test_table");
+        myDbUnitExtension.printTable("foo_table");
+        myDbUnitExtension.printTable("bar_table");
     }
 
     @Test
     void testFirstRecordHasNull(TestInfo testInfo) throws Exception {
         load(testInfo);
 
-        myDbUnitExtension.printTable("test_table");
+        myDbUnitExtension.printTable("foo_table");
     }
 
     @Test
@@ -49,7 +56,7 @@ public class FlatXmlDataSetTest {
         myDbUnitExtension.getDatabaseTester().setDataSet(dataSet);
         myDbUnitExtension.getDatabaseTester().onSetup();
 
-        myDbUnitExtension.printTable("test_table");
+        myDbUnitExtension.printTable("foo_table");
     }
 
     private void load(TestInfo testInfo) throws Exception {

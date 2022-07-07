@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE dataset SYSTEM "dataset.dtd">
 <dataset>
-    <table name="test_table">
+    <table name="foo_table">
         <column>id</column>
         <column>value1</column>
         <column>value2</column>
@@ -18,6 +18,18 @@
             <value>3</value>
             <null />
             <value>fuga</value>
+        </row>
+    </table>
+    <table name="bar_table">
+        <column>id</column>
+        <column>foo_id</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2</value>
         </row>
     </table>
 </dataset>
