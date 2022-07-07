@@ -27,6 +27,8 @@ public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
     public void beforeAll(ExtensionContext context) throws Exception {
         String testClassName = context.getRequiredTestClass().getSimpleName();
         databaseTester = new JdbcDatabaseTester("org.hsqldb.jdbcDriver", "jdbc:hsqldb:mem:" + testClassName );
+//        databaseTester = new JdbcDatabaseTester("org.postgresql.Driver", "jdbc:postgresql://localhost/postgres",
+//                "postgres", "password");
         connection = databaseTester.getConnection();
     }
 

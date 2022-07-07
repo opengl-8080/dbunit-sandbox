@@ -16,8 +16,7 @@ public class XmlDataSetTest {
         myDbUnitExtension.ddl("""
         create table test_table (
             id integer primary key,
-            value1 varchar(8),
-            value2 varchar(8)
+            value varchar(8)
         )""");
     }
 
