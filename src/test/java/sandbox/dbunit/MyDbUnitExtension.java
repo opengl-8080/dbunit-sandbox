@@ -64,7 +64,8 @@ public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
             for (int row=0; row<table.getRowCount(); row++) {
                 List<String> values = new ArrayList<>();
                 for (Column column : metaData.getColumns()) {
-                    values.add(column.getColumnName() + "=" + table.getValue(row, column.getColumnName()));
+                    Object value = table.getValue(row, column.getColumnName());
+                    values.add(column.getColumnName() + "=" + format(value));
                 }
                 System.out.println("  " + String.join(", ", values));
             }
@@ -72,6 +73,16 @@ public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
         } catch (DataSetException | SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String format(Object value) {
+        if (value == null) {
+            return "null";
+        }
+        if (value instanceof String) {
+            return "'" + value + "'";
+        }
+        return value.toString();
     }
 
     public IDatabaseTester getDatabaseTester() {
