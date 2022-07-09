@@ -16,7 +16,7 @@ public class SortedTableForNumericTest {
 
     @BeforeAll
     static void beforeAll() {
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table test_table (
             id integer primary key,
             text varchar(8),

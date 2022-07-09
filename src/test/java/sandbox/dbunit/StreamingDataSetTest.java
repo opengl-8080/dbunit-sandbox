@@ -24,8 +24,8 @@ public class StreamingDataSetTest {
     @BeforeAll
     static void beforeAll() {
         // DB初期化(テーブル作成)
-        myDbUnitExtension.ddl("drop table if exists test_table");
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("drop table if exists test_table");
+        myDbUnitExtension.sql("""
         create table test_table (
             id integer primary key,
             value varchar(1024)

@@ -18,13 +18,13 @@ public class AssertSpecifiedTableTest {
     @BeforeAll
     static void beforeAll() {
         // DB初期化(テーブル作成)
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table foo_table (
             id integer primary key,
             text varchar(32),
             numeric integer
         )""");
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table bar_table (
             id integer primary key,
             text varchar(32)

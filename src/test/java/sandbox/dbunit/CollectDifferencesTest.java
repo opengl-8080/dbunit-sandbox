@@ -21,7 +21,7 @@ public class CollectDifferencesTest {
 
     @BeforeAll
     static void beforeAll() {
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table test_table (
             id integer primary key,
             value varchar(8)

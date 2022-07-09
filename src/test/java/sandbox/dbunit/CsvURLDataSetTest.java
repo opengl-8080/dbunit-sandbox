@@ -16,13 +16,13 @@ public class CsvURLDataSetTest {
 
     @BeforeAll
     static void beforeAll() {
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table foo_table (
             id integer primary key,
             value_1 varchar(32),
             value_2 varchar(32)
         )""");
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table bar_table (
             id integer primary key,
             foo_id integer,

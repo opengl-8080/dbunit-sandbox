@@ -17,12 +17,12 @@ public class FlatXmlDataSetTest {
     @BeforeAll
     static void beforeAll() {
         // DB初期化(テーブル作成)
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table foo_table (
             id integer primary key,
             value varchar(32)
         )""");
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table bar_table (
             id integer primary key,
             foo_id integer,

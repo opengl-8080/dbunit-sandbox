@@ -18,7 +18,7 @@ public class BlobTest {
     @BeforeAll
     static void beforeAll() {
         // DB初期化(テーブル作成)
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table test_table (
             id integer primary key,
             text blob,

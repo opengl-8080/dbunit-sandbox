@@ -17,13 +17,13 @@ public class XlsDataSetTest {
 
     @BeforeAll
     static void beforeAll() {
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table foo_table (
             id integer primary key,
             value_1 varchar(8),
             value_2 varchar(8)
         )""");
-        myDbUnitExtension.ddl("""
+        myDbUnitExtension.sql("""
         create table bar_table (
             id integer primary key,
             foo_id integer,

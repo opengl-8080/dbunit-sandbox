@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="foo_table">
+    </table>
+    <table name="bar_table">
+    </table>
+</dataset>

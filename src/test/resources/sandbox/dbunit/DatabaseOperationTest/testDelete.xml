@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+    <table name="foo_table">
+        <column>id</column>
+        <row>
+            <value>1</value>
+        </row>
+        <row>
+            <value>9</value>
+        </row>
+    </table>
+    <table name="bar_table">
+        <column>id</column>
+        <row>
+            <value>10</value>
+        </row>
+        <row>
+            <value>100</value>
+        </row>
+    </table>
+</dataset>

@@ -38,7 +38,7 @@ public class MyDbUnitExtension implements BeforeAllCallback, AfterAllCallback {
         }
     }
 
-    public void ddl(String sql) {
+    public void sql(String sql) {
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql)) {
             ps.execute();
         } catch (SQLException e) {
