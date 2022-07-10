@@ -1,6 +1,7 @@
 package sandbox.dbunit;
 
 import org.dbunit.DefaultOperationListener;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.stream.StreamingDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
@@ -38,7 +39,7 @@ public class StreamingDataSetTest {
             @Override
             public void connectionRetrieved(IDatabaseConnection connection) {
                 super.connectionRetrieved(connection);
-                connection.getConfig().setProperty("http://www.dbunit.org/features/batchedStatements", true);
+                connection.getConfig().setProperty(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, true);
             }
         });
 
@@ -58,7 +59,7 @@ public class StreamingDataSetTest {
             @Override
             public void connectionRetrieved(IDatabaseConnection connection) {
                 super.connectionRetrieved(connection);
-                connection.getConfig().setProperty("http://www.dbunit.org/features/batchedStatements", true);
+                connection.getConfig().setProperty(DatabaseConfig.FEATURE_BATCHED_STATEMENTS, true);
             }
         });
 

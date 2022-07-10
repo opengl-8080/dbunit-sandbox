@@ -37,7 +37,7 @@ public class CsvURLDataSetTest {
             public void connectionRetrieved(IDatabaseConnection connection) {
                 super.connectionRetrieved(connection);
                 final DatabaseConfig config = connection.getConfig();
-                config.setProperty("http://www.dbunit.org/features/allowEmptyFields", true);
+                config.setProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS, true);
             }
         });
 
