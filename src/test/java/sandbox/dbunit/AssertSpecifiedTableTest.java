@@ -52,7 +52,7 @@ public class AssertSpecifiedTableTest {
 
     @Test
     void testCreateQueryTable() throws Exception {
-        ITable actualFooTable = myDbUnitExtension.getConnection().createQueryTable("foo_table", "select * from foo_table");
+        ITable actualFooTable = myDbUnitExtension.getConnection().createQueryTable("foo_table", "select * from foo_table order by id");
 
         XmlDataSet expected = myDbUnitExtension.readXmlDataSet("/sandbox/dbunit/AssertSpecifiedTableTest/expected.xml");
         ITable expectedFooTable = expected.getTable("foo_table");
